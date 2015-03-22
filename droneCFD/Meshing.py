@@ -176,7 +176,7 @@ class mesher():
             Runner(args=['--silent' ,"snappyHexMesh","-overwrite","-case",self.casePath])
 
     def cfMesh(self, path, ):
-        Runner(args=['--silent',"surfaceGenerateBoundingBox", path, self.casePath+'/box.stl', 2,2,2,2,2,2 ])
+        Runner(args=['--silent',"surfaceGenerateBoundingBox",'-case',self.casePath, path, self.casePath+'/box.stl', 2,2,2,2,2,2 ])
         exit()
 
     def previewMesh(self):

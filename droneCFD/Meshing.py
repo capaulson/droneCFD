@@ -177,6 +177,7 @@ class mesher():
 
     def cfMesh(self, path, ):
         Runner(args=['--silent',"surfaceGenerateBoundingBox",'-case',self.casePath, path, self.casePath+'/box.stl', 2,2,2,2,2,2 ])
+        Runner(args=['--silent',"cartesianMesh",'-case',self.casePath])
         exit()
 
     def previewMesh(self):

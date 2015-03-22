@@ -46,4 +46,18 @@ boundaryLayers
   }
 }
 
+renameBoundary
+{
+   newPatchNames
+    {
+       "patch0.*"
+       {
+          newName Aircraft
+          type patch;
+       }
+    }
+
+}
+
+
 // ************************************************************************* //

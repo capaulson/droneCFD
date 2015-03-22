@@ -17,7 +17,7 @@ FoamFile
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-surfaceFile "box.fms";
+surfaceFile "box.stl";
 
 maxCellSize 1 ;
 

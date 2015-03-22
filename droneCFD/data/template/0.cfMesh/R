@@ -1,0 +1,64 @@
+/*--------------------------------------------------------------------------------*\
+ _______  .______        ______   .__   __.  _______      ______  _______  _______
+|       \ |   _  \      /  __  \  |  \ |  | |   ____|    /      ||   ____||       \
+|  .--.  ||  |_)  |    |  |  |  | |   \|  | |  |__      |  ,----'|  |__   |  .--.  |
+|  |  |  ||      /     |  |  |  | |  . `  | |   __|     |  |     |   __|  |  |  |  |
+|  '--'  ||  |\  \----.|  `--'  | |  |\   | |  |____    |  `----.|  |     |  '--'  |
+|_______/ | _| `._____| \______/  |__| \__| |_______|    \______||__|     |_______/
+
+\*--------------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volSymmTensorField;
+    object      R;
+}
+
+dimensions      [0 2 -2 0 0 0 0];
+
+internalField   uniform (0 0 0 0 0 0);
+
+boundaryField
+{
+
+    xMin
+    {
+        type  fixedValue;
+        value $internalField;
+    }
+
+    xMax
+    {
+        type            inletOutlet;
+        inletValue      $internalField;
+        value           $internalField;
+    }
+
+    yMin
+    {
+        type            kqRWallFunction;
+        value           $internalField;
+    }
+    yMax
+    {
+        type            kqRWallFunction;
+        value           $internalField;
+    }
+    zMin
+    {
+        type            kqRWallFunction;
+        value           $internalField;
+    }
+    zMax
+    {
+        type            kqRWallFunction;
+        value           $internalField;
+    }
+
+    patch0
+    {
+        type            kqRWallFunction;
+        value           $internalField;
+    }
+}

@@ -51,6 +51,7 @@ class mesher():
         ## Load in blockMeshDict
         self.blockMeshDict = ParsedParameterFile(os.path.join(casePath,'constant','polyMesh','blockMeshDict'))
         self.snappyHexMeshDict = ParsedParameterFile(os.path.join(casePath,'system','snappyHexMeshDict'))
+        self.cfMeshDict = ParsedParameterFile(os.path.join(casePath,'system','meshDict'))
         self.decomposeParDict = ParsedParameterFile(os.path.join(casePath,'system','decomposeParDict'))
 
     def blockMeshDomain(self):
@@ -174,6 +175,10 @@ class mesher():
             ## No parallel? Ok, lets just run snappyHexMesh
             Runner(args=['--silent' ,"snappyHexMesh","-overwrite","-case",self.casePath])
 
+    def cfMesh(self, path, ):
+        Runner(args=['--silent',"surfaceGenerateBoundingBox", path, self.casePath+'/box.stl', 2,2,2,2,2,2 ])
+        exit()
+
     def previewMesh(self):
         '''
         Utility function that simply opens the simulation in paraview
@@ -188,11 +193,13 @@ if __name__=='__main__':
     import time
     import Utilities
     Utilities.caseSetup('test')
+
     stlSolid = stlTools.SolidSTL('../test_dir/benchmarkAircraft.stl')
-    stlSolid.setaoa(5, units='degrees')
-    stlSolid.saveSTL('test/constant/triSurface/benchmarkAircraft.stl')
-    print stlSolid.bb
+    # stlSolid.setaoa(5, units='degrees')
+    # stlSolid.saveSTL('test/constant/triSurface/benchmarkAircraft.stl')
+    # print stlSolid.bb
     a = mesher('test', stlSolid,baseCellSize=0.31)
-    a.blockMesh()
-    a.snappyHexMesh()
-    a.previewMesh()
+    a.cfMesh()
+    # a.blockMesh()
+    # a.snappyHexMesh()
+    # a.previewMesh()

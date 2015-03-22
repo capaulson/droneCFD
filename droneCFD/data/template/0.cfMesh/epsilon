@@ -1,0 +1,64 @@
+/*--------------------------------------------------------------------------------*\
+ _______  .______        ______   .__   __.  _______      ______  _______  _______
+|       \ |   _  \      /  __  \  |  \ |  | |   ____|    /      ||   ____||       \
+|  .--.  ||  |_)  |    |  |  |  | |   \|  | |  |__      |  ,----'|  |__   |  .--.  |
+|  |  |  ||      /     |  |  |  | |  . `  | |   __|     |  |     |   __|  |  |  |  |
+|  '--'  ||  |\  \----.|  `--'  | |  |\   | |  |____    |  `----.|  |     |  '--'  |
+|_______/ | _| `._____| \______/  |__| \__| |_______|    \______||__|     |_______/
+
+\*--------------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      epsilon;
+}
+
+dimensions      [0 2 -3 0 0 0 0];
+
+internalField   uniform 1.8239;
+
+boundaryField
+{
+
+    xMin
+    {
+        type fixedValue;
+        value $internalField;
+    }
+
+    xMax
+    {
+        type fixedValue;
+        value $internalField;
+    }
+
+    yMin
+    {
+        type            epsilonWallFunction;
+	    value $internalField;
+    }
+    yMax
+    {
+        type            epsilonWallFunction;
+	    value $internalField;
+    }
+    zMin
+    {
+        type            epsilonWallFunction;
+	    value $internalField;
+    }
+    zMax
+    {
+        type            epsilonWallFunction;
+	    value $internalField;
+    }
+
+
+    patch0
+    {
+        type            epsilonWallFunction;
+	    value $internalField;
+    }
+}

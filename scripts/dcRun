@@ -27,6 +27,7 @@ parser.add_argument('--airspeed', type=float, default=15.0, help='Airspeed in th
 parser.add_argument('--cofg', type=float, default=0.0, help='The X position of the Center of Gravity (cog) as measured from the nose.')
 parser.add_argument('--refarea', type=float, default=1.0, help='The reference area of the wing being simulated, used for force coefficient calcuations')
 parser.add_argument('--convergence', type=float, default=1e-6, help='Convergence value to terminate the simulation.')
+parser.add_argument('--mesher', choices=['snappy', 'cfMesh'], default='cfMesh', help='Mesh Method to use (cfMesh must be installed)')
 parser.add_argument('--preview', choices=['full', 'final', 'none'], default='none', help='Controls Paraview previews of the simulation.')
 args = parser.parse_args()
 print args
@@ -40,8 +41,11 @@ for aoa in args.aoa:
 
     bcs = {'vhigh':.1, 'high':0.15, 'medium':0.3001, 'low':0.45, 'vlow':0.60}
     mesh = Meshing.mesher(case.dir, model, nprocs=6, baseCellSize=bcs[args.resolution], parserArgs=args)
-    mesh.blockMesh()
-    mesh.snappyHexMesh()
+    if args.mesher == 'snappy':
+        mesh.blockMesh()
+        mesh.snappyHexMesh()
+    else:
+        mesh.cfMesh(case.stlPath)
 
     if args.preview=='full':
         mesh.previewMesh()

@@ -181,11 +181,9 @@ class mesher():
         dx = (self.stlSolid.bb[1]-self.stlSolid.bb[0])
         dy = (self.stlSolid.bb[3]-self.stlSolid.bb[2])
         dz = (self.stlSolid.bb[5]-self.stlSolid.bb[4])
-        Runner(args=['--silent',"surfaceGenerateBoundingBox",'-case',self.casePath, path, self.casePath+'/box.stl', 2*dx,2*dy,4*dz,8*dx,2*dy,4*dz ])
+        Runner(args=['--silent',"surfaceGenerateBoundingBox",'-case',self.casePath, path, self.casePath+'/box.stl', 2*dx, 8*dx, 2*dy, 2*dy, 4*dz, 4*dz ])
         Runner(args=['--silent',"cartesianMesh",'-case',self.casePath])
         Runner(args=['--silent',"checkMesh",'-case',self.casePath])
-
-        exit()
 
     def previewMesh(self):
         '''

@@ -176,7 +176,10 @@ class mesher():
             Runner(args=['--silent' ,"snappyHexMesh","-overwrite","-case",self.casePath])
 
     def cfMesh(self, path, ):
-        Runner(args=['--silent',"surfaceGenerateBoundingBox",'-case',self.casePath, path, self.casePath+'/box.stl', 2,2,2,2,2,2 ])
+        dx = (self.stlSolid.bb[1]-self.stlSolid.bb[0])
+        dy = (self.stlSolid.bb[3]-self.stlSolid.bb[2])
+        dz = (self.stlSolid.bb[5]-self.stlSolid.bb[4])
+        Runner(args=['--silent',"surfaceGenerateBoundingBox",'-case',self.casePath, path, self.casePath+'/box.stl', dx,2*dy,4*dz,8*dx,2*dy,4*dz ])
         Runner(args=['--silent',"cartesianMesh",'-case',self.casePath])
         Runner(args=['--silent',"checkMesh",'-case',self.casePath])
         exit()

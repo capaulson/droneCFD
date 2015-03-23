@@ -56,7 +56,7 @@ boundaryField
     }
 
 
-    patch0
+    Aircraft
     {
         type            epsilonWallFunction;
 	    value $internalField;

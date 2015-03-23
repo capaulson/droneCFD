@@ -42,7 +42,7 @@ boundaryField
   {
     type slip;
   }
-  patch0
+  Aircraft
   {
     type fixedValue;
     value uniform (0 0 0);

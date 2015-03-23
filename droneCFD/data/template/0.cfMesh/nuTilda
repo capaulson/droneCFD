@@ -51,7 +51,7 @@ boundaryField
         type kqRWallFunction;
         value $internalField;
     }
-    patch0
+    Aircraft
     {
         type kqRWallFunction;
         value $internalField;

@@ -21,7 +21,7 @@ internalField   uniform 0;
 
 boundaryField
 {
-    patch0
+    Aircraft
     {
         type            calculated;
         value           uniform 0;

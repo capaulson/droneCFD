@@ -49,7 +49,7 @@ boundaryField
     {
         type            zeroGradient;
     }
-    patch0
+    Aircraft
     {
         type zeroGradient;
     }

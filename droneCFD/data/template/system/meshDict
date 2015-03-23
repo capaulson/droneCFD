@@ -19,9 +19,9 @@ FoamFile
 
 surfaceFile "box.stl";
 
-maxCellSize 1 ;
+maxCellSize 0.75;
 
-minCellSize 0.0015;
+minCellSize 0.001;
 
 localRefinement
 {
@@ -32,15 +32,26 @@ localRefinement
   }
 }
 
+objectRefinements
+{
+  downwindBox{
+      type box;
+      center (0 0 0);
+      lengthX 1;
+      lengthY 1;
+      lengthZ 1;
+  }
+}
+
 boundaryLayers
 {
  patchBoundaryLayers
   {
    "patch0.*"
      {
-      nLayers 3;
+      nLayers 6;
       thicknessRatio 1.1;
-      maxFirstLayerThickness 0.001;
+      maxFirstLayerThickness 0.0005;
       allowDiscontinuity 0;
      }
   }

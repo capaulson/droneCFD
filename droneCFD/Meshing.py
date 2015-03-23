@@ -181,9 +181,19 @@ class mesher():
         dx = (self.stlSolid.bb[1]-self.stlSolid.bb[0])
         dy = (self.stlSolid.bb[3]-self.stlSolid.bb[2])
         dz = (self.stlSolid.bb[5]-self.stlSolid.bb[4])
+
+        # Configure the downwindBox
+        self.cfMeshDict['objectRefinements']['downwindBox']['centre'] = [0.75*dx, 0, 0]
+        self.cfMeshDict['objectRefinements']['downwindBox']['lengthX'] = 2.5 * dx
+        self.cfMeshDict['objectRefinements']['downwindBox']['lengthY'] = 1.4 * dy
+        self.cfMeshDict['objectRefinements']['downwindBox']['lengthZ'] = 1.4 * dz
+        self.cfMeshDict['objectRefinements']['downwindBox']['cellSize'] = 0.025
+        self.cfMeshDict.writeFile()
+
         Runner(args=['--silent',"surfaceGenerateBoundingBox",'-case',self.casePath, path, self.casePath+'/box.stl', 2*dx, 8*dx, 2*dy, 2*dy, 4*dz, 4*dz ])
         Runner(args=['--silent',"cartesianMesh",'-case',self.casePath])
         Runner(args=['--silent',"checkMesh",'-case',self.casePath])
+        exit()
 
     def previewMesh(self):
         '''
